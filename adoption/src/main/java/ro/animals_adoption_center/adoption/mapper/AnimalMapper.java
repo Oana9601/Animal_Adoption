@@ -9,7 +9,6 @@ public class AnimalMapper {
 
     public static AnimalDTO toDTO(Animal animal) {
         AnimalDTO dto = new AnimalDTO();
-        dto.setId(animal.getId());
         dto.setName(animal.getName());
         dto.setSpecies(animal.getSpecies());
         dto.setAge(animal.getAge());

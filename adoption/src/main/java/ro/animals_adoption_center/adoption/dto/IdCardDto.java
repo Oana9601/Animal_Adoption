@@ -1,5 +1,9 @@
 package ro.animals_adoption_center.adoption.dto;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -7,25 +11,28 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ro.animals_adoption_center.adoption.model.IdCard;
+import ro.animals_adoption_center.adoption.model.Animal;
 
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
-public class AnimalDTO {
+@AllArgsConstructor
+public class IdCardDto {
 
-
-    @NotBlank(message = "Name is mandatory")
+    @NotBlank(message = "AnimalSex is mandatory")
     @Size(max = 50, message = "Maximum size no more than 50 characters")
-    private String name;
+    private String animalSex;
+
+    @NotBlank(message = "Series is mandatory")
+    @Size(max = 50, message = "Maximum size no more than 50 characters")
+    private  String series;
+
+    @NotNull(message = "Age is mandatory")
+    private Integer age;
 
     @NotBlank(message = "Species is mandatory")
     @Size(max = 50, message = "Maximum size no more than 50 characters")
     private String species;
-
-    @NotNull(message = "Age is mandatory")
-    private Integer age;
 
     @NotBlank(message = "Breed is mandatory")
     @Size(max = 50, message = "Maximum size no more than 50 characters")
@@ -35,11 +42,4 @@ public class AnimalDTO {
     @Size(max = 350, message = "Max size no more than 350 characters")
     private String description;
 
-    @NotNull(message = "Available status is mandatory")
-    private Boolean available;
-
-    private IdCardDto idCardDto;
-
-
 }
-
