@@ -23,4 +23,10 @@ public class IdCardController {
         return idCardService.getIdCardForAnimal(animalId);
     }
 
+    @DeleteMapping
+    public String deleteIdCard(@RequestParam Long animalId){
+        idCardService.deleteIdCardForAnimal(animalId);
+        return "Id Card deleted successfully!";
+    }
+
 }

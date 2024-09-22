@@ -4,6 +4,7 @@ package ro.animals_adoption_center.adoption.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.animals_adoption_center.adoption.dto.AnimalDTO;
+import ro.animals_adoption_center.adoption.exceptions.AnimalNotFoundException;
 import ro.animals_adoption_center.adoption.mapper.AnimalMapper;
 import ro.animals_adoption_center.adoption.model.Animal;
 import ro.animals_adoption_center.adoption.repository.AnimalRepository;
@@ -26,7 +27,7 @@ public class AnimalService {
 
     public Optional<AnimalDTO> getAnimalById(int id) {
 
-        Animal animal = animalRepository.findById(Long.valueOf(id)).orElseThrow();
+        Animal animal = animalRepository.findById(Long.valueOf(id)).orElseThrow(() -> new AnimalNotFoundException("Animal not found!"));
 
         return Optional.ofNullable(AnimalMapper.toDTO(animal));
     }
@@ -61,4 +62,5 @@ public class AnimalService {
     public void deleteAnimal(Long id) {
         animalRepository.deleteById(id);
     }
+
 }

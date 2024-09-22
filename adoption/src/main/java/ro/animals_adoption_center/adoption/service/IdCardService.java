@@ -44,8 +44,12 @@ public class IdCardService {
         if(idCardByAnimalId.get() != null) {
             idCardDto = IdCardMapper.toDTO(idCardByAnimalId.get());
         }
-        
+
         return idCardDto;
+    }
+
+    public void deleteIdCardForAnimal(Long animalId){
+        idCardRepository.deleteById(animalId);
     }
 
 }

@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ro.animals_adoption_center.adoption.dto.AnimalDTO;
-import ro.animals_adoption_center.adoption.model.Animal;
 import ro.animals_adoption_center.adoption.service.AnimalService;
 
 import java.util.List;
@@ -19,7 +18,6 @@ public class AnimalController {
     @Autowired
     private AnimalService animalService;
 
-
     @GetMapping
     public ResponseEntity<List<AnimalDTO>> getAllAnimals() {
         List<AnimalDTO> animals = animalService.getAllAnimals();
@@ -31,6 +29,12 @@ public class AnimalController {
     public ResponseEntity<AnimalDTO> getAnimalById(@PathVariable int id) {
         Optional<AnimalDTO> animal = animalService.getAnimalById(id);
         return animal.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/{id}/{name}")
+    public Optional<AnimalDTO> getAnimalByIdAndPrintName(@PathVariable int id, @PathVariable String name) {
+        System.out.println("id: " + id + ", name: " + name);
+        return animalService.getAnimalById(id);
     }
 
     @PostMapping

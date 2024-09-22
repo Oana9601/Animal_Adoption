@@ -39,4 +39,8 @@ public class Animal {
     @Column(nullable = false)
     private Boolean available;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "client_id")
+    private Client client;
+
 }

@@ -11,8 +11,8 @@ import ro.animals_adoption_center.adoption.model.IdCard;
 
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class AnimalDTO {
 
 
