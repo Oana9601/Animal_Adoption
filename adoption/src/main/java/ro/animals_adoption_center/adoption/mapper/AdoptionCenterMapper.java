@@ -2,9 +2,7 @@ package ro.animals_adoption_center.adoption.mapper;
 
 import org.springframework.stereotype.Component;
 import ro.animals_adoption_center.adoption.dto.AdoptionCenterDTO;
-import ro.animals_adoption_center.adoption.dto.IdCardDto;
 import ro.animals_adoption_center.adoption.model.AdoptionCenter;
-import ro.animals_adoption_center.adoption.model.IdCard;
 
 @Component
 public class AdoptionCenterMapper {

@@ -6,7 +6,6 @@ import ro.animals_adoption_center.adoption.dto.ClientDTO;
 import ro.animals_adoption_center.adoption.model.Animal;
 import ro.animals_adoption_center.adoption.model.Client;
 
-import java.lang.ref.Cleaner;
 import java.util.ArrayList;
 import java.util.List;
 

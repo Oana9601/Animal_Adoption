@@ -3,6 +3,7 @@ package ro.animals_adoption_center.adoption.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.animals_adoption_center.adoption.dto.AdoptionCenterDTO;
+import ro.animals_adoption_center.adoption.exceptions.AdoptionCenterNotFoundException;
 import ro.animals_adoption_center.adoption.mapper.AdoptionCenterMapper;
 import ro.animals_adoption_center.adoption.model.AdoptionCenter;
 import ro.animals_adoption_center.adoption.model.Animal;
@@ -31,7 +32,7 @@ public class AdoptionCenterService {
 
     public AdoptionCenterDTO getAdoptionCenterForAnimal(Long animalId){
         Animal animal = animalRepository.findById(animalId).orElseThrow();
-        Optional<AdoptionCenter> adoptionCenterByAnimalId = adoptionCenterRepository.findByAnimalId(animal.getId());
+        Optional<AdoptionCenter> adoptionCenterByAnimalId = Optional.ofNullable(adoptionCenterRepository.findByAnimalId(animal.getId()).orElseThrow(() -> new AdoptionCenterNotFoundException("Adoption center not found!")));
         AdoptionCenterDTO adoptionCenterDto = new AdoptionCenterDTO();
 
         if(adoptionCenterByAnimalId.get() != null) {

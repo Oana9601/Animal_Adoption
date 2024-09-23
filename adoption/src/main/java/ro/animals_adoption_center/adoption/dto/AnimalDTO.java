@@ -38,8 +38,6 @@ public class AnimalDTO {
     @NotNull(message = "Available status is mandatory")
     private Boolean available;
 
-    private IdCardDto idCardDto;
-
 
 }
 

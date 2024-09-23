@@ -42,6 +42,9 @@ public class Animal {
     @OneToOne(mappedBy = "animal")
     private IdCard idCard;
 
+    @OneToOne(mappedBy = "animal")
+    private Food food;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "client_id")
     private Client client;
