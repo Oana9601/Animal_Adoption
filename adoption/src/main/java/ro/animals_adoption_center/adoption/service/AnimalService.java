@@ -9,7 +9,6 @@ import ro.animals_adoption_center.adoption.mapper.AnimalMapper;
 import ro.animals_adoption_center.adoption.model.Animal;
 import ro.animals_adoption_center.adoption.repository.AnimalRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,7 +43,6 @@ public class AnimalService {
 
         return animalDto;
     }
-//todo: de facut in alt mod
 
     public void updateAnimal(Long id, AnimalDTO animalDetails) {
 

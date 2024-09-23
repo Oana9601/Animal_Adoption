@@ -13,8 +13,10 @@ public class IdCardController {
     private IdCardService idCardService;
 
     @PostMapping
-    public String addIdCard(@RequestParam Long animalId){
-        idCardService.createIdCardForAnimal(animalId);
+    public String addIdCard(@RequestParam Long animalId,
+                            @RequestParam String series,
+                            @RequestParam String animalSex){
+        idCardService.createIdCardForAnimal(animalId, series, animalSex);
         return "Id Card added successfully! ";
     }
 

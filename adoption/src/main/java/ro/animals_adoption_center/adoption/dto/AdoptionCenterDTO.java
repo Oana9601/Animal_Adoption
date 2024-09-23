@@ -8,23 +8,18 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ClientDTO {
+public class AdoptionCenterDTO {
 
-    @NotBlank(message = "Name is mandatory")
+    @NotBlank(message = "Center Name is mandatory")
     @Size(max = 50, message = "Maximum size no more than 50 characters")
-    private String name;
+    private String centerName;
 
-    @NotBlank(message = "Email is mandatory")
+    @NotBlank(message = "Address is mandatory")
     @Size(max = 50, message = "Maximum size no more than 50 characters")
-    private String email;
-
-    private List<AnimalDTO> animalsDTOList;
-
+    private String address;
 
 }

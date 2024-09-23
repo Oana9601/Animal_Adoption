@@ -22,7 +22,7 @@ public class Client {
     @Column(nullable = false, name = "email")
     private String email;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "animal", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "client", cascade = CascadeType.ALL)
     private List<Animal> animalList;
 
 

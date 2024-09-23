@@ -10,7 +10,6 @@ import ro.animals_adoption_center.adoption.repository.AnimalRepository;
 import ro.animals_adoption_center.adoption.repository.IdCardRepository;
 
 import java.util.Optional;
-import java.util.Random;
 
 @Service
 public class IdCardService {
@@ -21,7 +20,7 @@ public class IdCardService {
     @Autowired
     private AnimalRepository animalRepository;
 
-    public void createIdCardForAnimal(Long animalId){
+    public void createIdCardForAnimal(Long animalId, String series, String animalSex){
         Animal animal = animalRepository.findById(animalId).orElseThrow();
 
         IdCard idCard = new IdCard();
@@ -29,8 +28,8 @@ public class IdCardService {
         idCard.setAge(animal.getAge());
         idCard.setBreed(animal.getBreed());
         idCard.setDescription(animal.getDescription());
-        idCard.setSeries(String.valueOf((new Random()).nextInt(10) + 1 ));
-        idCard.setAnimalSex("Female");
+        idCard.setSeries(series);
+        idCard.setAnimalSex(animalSex);
 
         idCardRepository.save(idCard);
     }
@@ -38,7 +37,7 @@ public class IdCardService {
     public IdCardDto getIdCardForAnimal(Long animalId){
         Animal animal = animalRepository.findById(animalId).orElseThrow();
 
-        Optional<IdCard> idCardByAnimalId = idCardRepository.findById(animal.getId());
+        Optional<IdCard> idCardByAnimalId = idCardRepository.findByAnimalId(animal.getId());
         IdCardDto idCardDto = new IdCardDto();
 
         if(idCardByAnimalId.get() != null) {
