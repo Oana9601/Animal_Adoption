@@ -1,22 +1,29 @@
 package ro.animals_adoption_center.adoption.service;
 
 
+import jakarta.persistence.Id;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.animals_adoption_center.adoption.dto.AnimalDTO;
 import ro.animals_adoption_center.adoption.exceptions.AnimalNotFoundException;
 import ro.animals_adoption_center.adoption.mapper.AnimalMapper;
 import ro.animals_adoption_center.adoption.model.Animal;
+import ro.animals_adoption_center.adoption.model.IdCard;
 import ro.animals_adoption_center.adoption.repository.AnimalRepository;
+import ro.animals_adoption_center.adoption.repository.IdCardRepository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 @Service
 public class AnimalService {
 
     @Autowired
     private AnimalRepository animalRepository;
+
+    @Autowired
+    private IdCardRepository idCardRepository;
 
     public List<AnimalDTO> getAllAnimals() {
 
@@ -34,12 +41,24 @@ public class AnimalService {
     public AnimalDTO createAnimal(AnimalDTO animalDto) {
 
         Animal animal = new Animal();
+        animal.setName(animalDto.getName());
         animal.setAge(animalDto.getAge());
         animal.setBreed(animalDto.getBreed());
         animal.setDescription(animalDto.getDescription());
         animal.setAvailable(animalDto.getAvailable());
+        animal.setSpecies(animalDto.getSpecies());
 
         animalRepository.save(animal);
+
+        IdCard idCard = new IdCard();
+        idCard.setSeries(String.valueOf(new Random().nextInt(900000) + 100000));
+        idCard.setAnimalSex("female");
+        idCard.setSpecies(animalDto.getSpecies());
+        idCard.setAge(animalDto.getAge());
+        idCard.setBreed(animalDto.getBreed());
+        idCard.setDescription(animalDto.getDescription());
+
+        idCardRepository.save(idCard);
 
         return animalDto;
     }

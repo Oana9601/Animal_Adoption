@@ -39,6 +39,9 @@ public class Animal {
     @Column(nullable = false)
     private Boolean available;
 
+    @OneToOne(mappedBy = "animal")
+    private IdCard idCard;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "client_id")
     private Client client;
