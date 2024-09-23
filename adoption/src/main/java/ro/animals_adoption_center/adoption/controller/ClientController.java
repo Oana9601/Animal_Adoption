@@ -1,6 +1,7 @@
 package ro.animals_adoption_center.adoption.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ro.animals_adoption_center.adoption.dto.AnimalDTO;
@@ -38,6 +39,12 @@ public class ClientController {
         } else {
             return ResponseEntity.internalServerError().body("Client could not be created!");
         }
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<String> updateClient(@PathVariable Long id, @RequestBody AnimalDTO animalDetails) {
+        clientService.updateClient(id, animalDetails);
+        return ResponseEntity.status(HttpStatus.OK).body("Client updated succesfully! ");
     }
 
 

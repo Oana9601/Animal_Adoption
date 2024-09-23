@@ -22,6 +22,18 @@ public class ClientService {
     @Autowired
     private ClientRepository clientRepository;
 
+    public List<ClientDTO> getAllClients() {
+        return clientRepository.findAll().stream()
+                .map(client -> ClientMapper.toDTO(client)).toList();
+    }
+
+    public Optional<ClientDTO> getClientById(int id) {
+
+        Client client = clientRepository.findById(Long.valueOf(id)).orElseThrow(() -> new ClientNotFoundException("Animal not found!"));
+
+        return Optional.ofNullable(ClientMapper.toDTO(client));
+    }
+
     public ClientDTO createClient(ClientDTO clientDTO){
         List<Animal> animals = new ArrayList<>();
 
@@ -36,17 +48,15 @@ public class ClientService {
         return clientDTO;
     }
 
+    public void updateClient(Long id, AnimalDTO animalDetails) {
 
-    public List<ClientDTO> getAllClients() {
-        return clientRepository.findAll().stream()
-                .map(client -> ClientMapper.toDTO(client)).toList();
-    }
+        Client client = clientRepository.findById(id).orElseThrow(() -> new ClientNotFoundException("Client not found!"));
 
-    public Optional<ClientDTO> getClientById(int id) {
+        List<Animal> animals = client.getAnimalList();
+        animals.add(AnimalMapper.toEntity(animalDetails));
+        client.setAnimalList(animals);
 
-        Client client = clientRepository.findById(Long.valueOf(id)).orElseThrow(() -> new ClientNotFoundException("Animal not found!"));
-
-        return Optional.ofNullable(ClientMapper.toDTO(client));
+        clientRepository.save(client);
     }
 
     public void deleteClient(Long id) {

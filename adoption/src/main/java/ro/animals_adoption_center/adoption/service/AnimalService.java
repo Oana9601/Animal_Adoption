@@ -46,7 +46,7 @@ public class AnimalService {
 
     public void updateAnimal(Long id, AnimalDTO animalDetails) {
 
-        Animal animal = animalRepository.findById(id).orElseThrow();
+        Animal animal = animalRepository.findById(id).orElseThrow(() -> new AnimalNotFoundException("Animal not found!"));
         animal.setName(animalDetails.getName() != null ? animalDetails.getName() : animal.getName());
         animal.setSpecies(animalDetails.getSpecies() != null ? animalDetails.getSpecies() : animal.getSpecies());
         animal.setAge(animalDetails.getAge() != null ? animalDetails.getAge() : animal.getAge());
