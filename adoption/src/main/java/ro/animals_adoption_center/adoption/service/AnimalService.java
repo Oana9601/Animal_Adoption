@@ -25,6 +25,10 @@ public class AnimalService {
     @Autowired
     private IdCardRepository idCardRepository;
 
+    public AnimalService(AnimalRepository animalRepository) {
+
+    }
+
     public List<AnimalDTO> getAllAnimals() {
 
         return animalRepository.findAll().stream()

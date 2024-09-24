@@ -16,7 +16,6 @@ import lombok.NoArgsConstructor;
 @Table(name = "animals")
 public class Animal {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

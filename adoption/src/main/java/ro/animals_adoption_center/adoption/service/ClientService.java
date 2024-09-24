@@ -29,7 +29,8 @@ public class ClientService {
 
     public Optional<ClientDTO> getClientById(int id) {
 
-        Client client = clientRepository.findById(Long.valueOf(id)).orElseThrow(() -> new ClientNotFoundException("Animal not found!"));
+        Client client = clientRepository.findById(Long.valueOf(id)).orElseThrow(() ->
+                new ClientNotFoundException("Animal not found!"));
 
         return Optional.ofNullable(ClientMapper.toDTO(client));
     }
